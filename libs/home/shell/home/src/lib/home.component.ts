@@ -5,14 +5,18 @@ import { rxState } from '@rx-angular/state';
 import { Subject } from 'rxjs';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { AsyncPipe } from '@angular/common';
-import { RouterModule, provideRouter } from '@angular/router';
-import { homeRoutes } from './home.routes';
+import { RouterLink, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'item-catalogue-home',
   standalone: true,
-  imports: [TopNavComponent, MatSidenavModule, AsyncPipe, RouterModule],
-  providers: [provideRouter(homeRoutes)],
+  imports: [
+    TopNavComponent,
+    MatSidenavModule,
+    AsyncPipe,
+    RouterOutlet,
+    RouterLink,
+  ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
 })
