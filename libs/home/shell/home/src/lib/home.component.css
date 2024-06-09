@@ -19,3 +19,7 @@
   list-style: none;
   padding: 0;
 }
+
+.page-content {
+  padding: 1em;
+}

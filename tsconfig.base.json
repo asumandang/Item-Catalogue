@@ -15,13 +15,15 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@item-catalogue/feature-item-detail": [
-        "libs/item/feature/item-detail/src/index.ts"
-      ],
       "@item-catalogue/home": ["libs/home/shell/home/src/index.ts"],
       "@item-catalogue/home-ui": ["libs/home/ui/src/index.ts"],
       "@item-catalogue/home-ui-top-nav": ["libs/home/ui/top-nav/src/index.ts"],
-      "@item-catalogue/item-list": ["libs/item/feature/item-list/src/index.ts"],
+      "@item-catalogue/item-feature-detail": [
+        "libs/item/feature/item-detail/src/index.ts"
+      ],
+      "@item-catalogue/item-feature-list": [
+        "libs/item/feature/item-list/src/index.ts"
+      ],
       "@item-catalogue/item-shell": ["libs/item/shell/src/index.ts"]
     }
   },

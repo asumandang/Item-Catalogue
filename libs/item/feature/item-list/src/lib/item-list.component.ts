@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { MatTableModule } from '@angular/material/table';
 
 @Component({
   selector: 'item-catalogue-item-list',
   standalone: true,
-  imports: [CommonModule],
+  imports: [MatTableModule],
   templateUrl: './item-list.component.html',
   styleUrl: './item-list.component.css',
 })
