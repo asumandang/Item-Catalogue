@@ -1,11 +1,15 @@
-import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, EventEmitter, Output } from '@angular/core';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 @Component({
-  selector: 'lib-top-nav',
+  selector: 'item-catalogue-top-nav',
   standalone: true,
-  imports: [CommonModule],
+  imports: [MatButtonModule, MatIconModule, MatToolbarModule],
   templateUrl: './top-nav.component.html',
   styleUrl: './top-nav.component.css',
 })
-export class TopNavComponent {}
+export class TopNavComponent {
+  @Output() readonly menuClick = new EventEmitter<void>();
+}

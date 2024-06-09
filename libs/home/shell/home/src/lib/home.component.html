@@ -1,1 +1,19 @@
-<p>home works!</p>
+<item-catalogue-top-nav
+  (menuClick)="toggleSideMenu.next()"
+></item-catalogue-top-nav>
+<mat-sidenav-container
+  class="sidenav-container"
+  [hasBackdrop]="isSmallScreen$ | async"
+>
+  <mat-sidenav
+    #sidenav
+    class="side-nav"
+    [opened]="isSideMenuOpened$ | async"
+    [mode]="(isSmallScreen$ | async) ? 'over' : 'side'"
+  >
+    <ul class="side-nav-list">
+      <li><a>Product</a></li>
+    </ul>
+  </mat-sidenav>
+  <router-outlet></router-outlet>
+</mat-sidenav-container>
