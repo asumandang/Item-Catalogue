@@ -3,6 +3,9 @@
   justify-content: space-between;
   padding: 0.5em 1em;
   box-shadow: 0 4px 12px #0000000d;
+  position: sticky;
+  background-color: white;
+  z-index: 10;
 }
 
 .top-nav-list {

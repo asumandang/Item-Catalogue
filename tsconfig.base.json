@@ -15,6 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@item-catalogue/dto": ["libs/dto/src/index.ts"],
       "@item-catalogue/home": ["libs/home/shell/home/src/index.ts"],
       "@item-catalogue/home-ui": ["libs/home/ui/src/index.ts"],
       "@item-catalogue/home-ui-top-nav": ["libs/home/ui/top-nav/src/index.ts"],
