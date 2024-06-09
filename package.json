@@ -2,7 +2,9 @@
   "name": "@item-catalogue/source",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "prepare": "nx g @nx-dotnet/core:restore"
+  },
   "private": true,
   "dependencies": {
     "@angular/animations": "~18.0.0",
