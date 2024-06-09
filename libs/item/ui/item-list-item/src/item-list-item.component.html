@@ -1,0 +1,9 @@
+<mat-card class="item-card">
+  <mat-card-header>
+    <mat-card-subtitle>{{ item.name }}</mat-card-subtitle>
+    <mat-card-title>{{ item.description }}</mat-card-title>
+  </mat-card-header>
+  <mat-card-actions>
+    <a [routerLink]="['/items/', item.id]">View</a>
+  </mat-card-actions>
+</mat-card>

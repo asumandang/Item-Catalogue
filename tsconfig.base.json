@@ -31,7 +31,10 @@
         "libs/item/feature/item-list/src/index.ts"
       ],
       "@item-catalogue/item-shell": ["libs/item/shell/src/index.ts"],
-      "@item-catalogue/item-ui": ["libs/item/ui/src/index.ts"]
+      "@item-catalogue/item-ui": ["libs/item/ui/src/index.ts"],
+      "@item-catalogue/item-ui-list-item": [
+        "libs/item/ui/item-list-item/src/index.ts"
+      ]
     }
   },
   "exclude": ["node_modules", "tmp"]

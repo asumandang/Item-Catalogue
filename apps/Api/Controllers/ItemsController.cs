@@ -9,8 +9,8 @@ namespace ItemCatalogue.Api.Controllers
   {
     private static readonly List<Item> Items = new List<Item>
         {
-            new Item { Id = 1, Name = "Item1", Description = "This is item 1", Category = "Shirt" },
-            new Item { Id = 2, Name = "Item2", Description = "This is item 2", Category = "Pants" }
+            new Item { Id = 1, Name = "Item1", Description = "This is item 1", Category = "Shirt", Slug = "item-1" },
+            new Item { Id = 2, Name = "Item2", Description = "This is item 2", Category = "Pants", Slug = "item-2" }
         };
 
     [HttpGet]
@@ -71,5 +71,7 @@ namespace ItemCatalogue.Api.Controllers
     public string Description { get; set; }
 
     public string Category { get; set; }
+
+    public string Slug { get; set; }
   }
 }

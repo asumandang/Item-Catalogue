@@ -1,1 +1,6 @@
-<div *ngFor="let item of item$ | async">{{item.id}}</div>
+<div class="item-list">
+  <item-catalogue-item-list-item
+    [item]="item"
+    *ngFor="let item of item$ | async"
+  ></item-catalogue-item-list-item>
+</div>

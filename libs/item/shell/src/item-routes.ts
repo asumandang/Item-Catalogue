@@ -7,8 +7,8 @@ export const itemRoutes: Route[] = [
     children: [
       { path: '', pathMatch: 'full', component: ItemListComponent },
       {
-        path: ':id',
-        loadChildren: () =>
+        path: ':slug',
+        loadComponent: () =>
           import('@item-catalogue/item-feature-detail').then(
             (m) => m.ItemDetailComponent
           ),

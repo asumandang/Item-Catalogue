@@ -1,1 +1,1 @@
-export * from './lib/item-ui.component';
+export * from '@item-catalogue/item-ui-list-item';

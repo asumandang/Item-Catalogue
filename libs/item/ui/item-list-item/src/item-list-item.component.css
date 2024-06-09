@@ -1,0 +1,11 @@
+:host {
+  display: block;
+  min-height: 200px;
+  width: 200px;
+  background-color: white;
+  box-shadow: 0 4px 12px #0000000d;
+}
+
+.item-card {
+  height: 100%;
+}
