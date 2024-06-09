@@ -2,7 +2,7 @@
   "name": "home-ui",
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/home/ui/src",
-  "prefix": "lib",
+  "prefix": "item-catalogue",
   "projectType": "library",
   "tags": ["type:ui", "bc:home"],
   "targets": {

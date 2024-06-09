@@ -2,7 +2,7 @@
   "name": "home",
   "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/home/shell/home/src",
-  "prefix": "lib",
+  "prefix": "item-catalogue",
   "projectType": "library",
   "tags": ["type:feature", "bc:home"],
   "targets": {
