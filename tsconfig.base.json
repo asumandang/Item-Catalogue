@@ -15,9 +15,12 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@item-catalogue/data-access": ["libs/item/data-access/src/index.ts"],
       "@item-catalogue/home": ["libs/home/shell/home/src/index.ts"],
       "@item-catalogue/home-ui": ["libs/home/ui/src/index.ts"],
       "@item-catalogue/home-ui-top-nav": ["libs/home/ui/top-nav/src/index.ts"],
+      "@item-catalogue/http": ["libs/http/src/index.ts"],
+      "@item-catalogue/http-core": ["libs/http/core/src/index.ts"],
       "@item-catalogue/item-feature-detail": [
         "libs/item/feature/item-detail/src/index.ts"
       ],
