@@ -15,6 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@item-catalogue/home": ["libs/home/shell/home/src/index.ts"],
       "@item-catalogue/item-detail": [
         "libs/item/feature/item-detail/src/index.ts"
       ]
