@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 @Component({
   selector: 'lib-home',
   standalone: true,
-  imports: [CommonModule],
+  imports: [TopNav],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
 })

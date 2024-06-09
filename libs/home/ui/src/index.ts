@@ -1,1 +1,1 @@
-export * from './lib/home-ui.component';
+export * from '@item-catalogue/home-ui-top-nav';
