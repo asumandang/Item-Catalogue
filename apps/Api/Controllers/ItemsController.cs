@@ -1,5 +1,11 @@
+using ItemCatalogue.Api.Services;
 using Microsoft.AspNetCore.Mvc;
+using StackExchange.Redis;
+using System;
 using System.Collections.Generic;
+using System.Net.Http;
+using System.Text.Json;
+using System.Threading.Tasks;
 
 namespace ItemCatalogue.Api.Controllers
 {
@@ -7,22 +13,26 @@ namespace ItemCatalogue.Api.Controllers
   [ApiController]
   public class ItemsController : ControllerBase
   {
-    private static readonly List<Item> Items = new List<Item>
-        {
-            new Item { Id = 1, Name = "Item1", Description = "This is item 1", Category = "Shirt", Slug = "item-1", ImageUrl = "https://d1csarkz8obe9u.cloudfront.net/posterpreviews/black-t-shirt-on-transparent-background-design-template-2165a94b9536a78ac417f5e505045905_screen.jpg?ts=1701334867" },
-            new Item { Id = 2, Name = "Item2", Description = "This is item 2", Category = "Pants", Slug = "item-2", ImageUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQX8YkYMXrXPg-J5bUPNrBLkTysRxxCl7qcrQ&s" }
-        };
+    private readonly IItemService _itemService;
+
+    public ItemsController(IItemService itemService)
+    {
+      _itemService = itemService;
+    }
+
 
     [HttpGet]
-    public ActionResult<IEnumerable<Item>> GetItems()
+    public async Task<ActionResult<List<Item>>> GetItems()
     {
-      return Ok(Items);
+      var items = await _itemService.GetItemsAsync();
+
+      return Ok(items);
     }
 
     [HttpGet("{id}")]
-    public ActionResult<Item> GetItem(int id)
+    public async Task<ActionResult<Item>> GetItem(string id)
     {
-      var item = Items.Find(i => i.Id == id);
+      var item = await _itemService.GetItemAsync(id);
       if (item == null)
       {
         return NotFound();
@@ -31,49 +41,38 @@ namespace ItemCatalogue.Api.Controllers
     }
 
     [HttpPost]
-    public ActionResult<Item> CreateItem([FromBody] Item newItem)
+    public async Task<ActionResult<Item>> CreateItem([FromBody] Item item)
     {
-      newItem.Id = Items.Count + 1;
-      Items.Add(newItem);
+      var newItem = await _itemService.CreateItemAsync(item);
+      if (newItem == null)
+      {
+        return Conflict("Slug already exists. Please choose a different slug.");
+      }
       return CreatedAtAction(nameof(GetItem), new { id = newItem.Id }, newItem);
     }
 
-    [HttpPut("{id}")]
-    public IActionResult UpdateItem(int id, [FromBody] Item updatedItem)
+    [HttpPut("{slug}")]
+    public async Task<IActionResult> UpdateItem(string slug, [FromBody] Item updatedItem)
     {
-      var item = Items.Find(i => i.Id == id);
-      if (item == null)
+      var isUpdated = await _itemService.UpdateItemAsync(slug, updatedItem);
+      if (!isUpdated)
       {
         return NotFound();
       }
-      item.Name = updatedItem.Name;
-      item.Description = updatedItem.Description;
+
       return NoContent();
     }
 
-    [HttpDelete("{id}")]
-    public IActionResult DeleteItem(int id)
+    [HttpDelete("{slug}")]
+    public async Task<IActionResult> DeleteItem(string slug)
     {
-      var item = Items.Find(i => i.Id == id);
-      if (item == null)
+      var isDeleted = await _itemService.DeleteItemAsync(slug);
+      if (!isDeleted)
       {
         return NotFound();
       }
-      Items.Remove(item);
+
       return NoContent();
     }
-  }
-
-  public class Item
-  {
-    public int Id { get; set; }
-    public string Name { get; set; }
-    public string Description { get; set; }
-
-    public string Category { get; set; }
-
-    public string Slug { get; set; }
-
-    public string ImageUrl { get; set; }
   }
 }
