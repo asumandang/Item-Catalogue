@@ -18,6 +18,7 @@
     "@angular/platform-browser-dynamic": "~18.0.0",
     "@angular/router": "~18.0.0",
     "@nx/angular": "19.2.2",
+    "@rx-angular/cdk": "^18.0.0",
     "@rx-angular/state": "^18.0.0",
     "@rx-angular/template": "^18.0.0",
     "bootstrap": "^5.3.3",
