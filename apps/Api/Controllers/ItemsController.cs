@@ -9,8 +9,8 @@ namespace ItemCatalogue.Api.Controllers
   {
     private static readonly List<Item> Items = new List<Item>
         {
-            new Item { Id = 1, Name = "Item1", Description = "This is item 1", Category = "Shirt", Slug = "item-1" },
-            new Item { Id = 2, Name = "Item2", Description = "This is item 2", Category = "Pants", Slug = "item-2" }
+            new Item { Id = 1, Name = "Item1", Description = "This is item 1", Category = "Shirt", Slug = "item-1", ImageUrl = "https://d1csarkz8obe9u.cloudfront.net/posterpreviews/black-t-shirt-on-transparent-background-design-template-2165a94b9536a78ac417f5e505045905_screen.jpg?ts=1701334867" },
+            new Item { Id = 2, Name = "Item2", Description = "This is item 2", Category = "Pants", Slug = "item-2", ImageUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQX8YkYMXrXPg-J5bUPNrBLkTysRxxCl7qcrQ&s" }
         };
 
     [HttpGet]
@@ -73,5 +73,7 @@ namespace ItemCatalogue.Api.Controllers
     public string Category { get; set; }
 
     public string Slug { get; set; }
+
+    public string ImageUrl { get; set; }
   }
 }
