@@ -10,6 +10,10 @@ export class ItemService {
   httpClient = inject(HttpClient);
   apiV1Prefix = inject(API_V1_PREFIX);
 
+  getItem(slug: string) {
+    return this.httpClient.get<Item>(`${this.apiV1Prefix}/items/${slug}`);
+  }
+
   getItems() {
     return this.httpClient.get<Item[]>(`${this.apiV1Prefix}/items`);
   }

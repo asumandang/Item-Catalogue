@@ -1,1 +1,14 @@
-<p>item-detail works!</p>
+<div class="item-breadcrumbs"><a routerLink="/items">Items</a> > {{ slug$ | async }}</div>
+<ng-container *rxLet="item$; let item; error: error">
+  <article class="item-detail">
+    <img [ngSrc]="item.imageUrl" width="400" height="400" class="item-image" priority/>
+    <div>
+      <h2>{{ item.name }}</h2>
+      <p>{{ item.description }}</p>
+    </div>
+  </article>
+</ng-container>
+
+<ng-template #error>
+  <div>No Product Found</div>
+</ng-template>

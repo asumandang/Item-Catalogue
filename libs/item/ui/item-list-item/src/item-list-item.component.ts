@@ -2,11 +2,13 @@ import { Component, Input } from '@angular/core';
 import { Item } from '@item-catalogue/dto';
 import { MatCardModule } from '@angular/material/card';
 import { RouterLink } from '@angular/router';
+import { NgOptimizedImage } from '@angular/common';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'item-catalogue-item-list-item',
   standalone: true,
-  imports: [MatCardModule, RouterLink],
+  imports: [MatButtonModule, MatCardModule, RouterLink, NgOptimizedImage],
   templateUrl: './item-list-item.component.html',
   styleUrl: './item-list-item.component.css',
 })

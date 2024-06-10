@@ -1,11 +1,42 @@
 :host {
   display: block;
   min-height: 200px;
-  width: 200px;
-  background-color: white;
-  box-shadow: 0 4px 12px #0000000d;
+  width: 232px;
+}
+
+.item-link {
+  text-decoration: none;
 }
 
 .item-card {
   height: 100%;
+  background-color: white;
+  box-shadow: 0 10px 20px #1fc6b80d;
+}
+
+.item-card:hover {
+  box-shadow: 0 10px 10px #0000001a;
+}
+
+.item-name {
+  font-weight: 500;
+  margin: 0;
+}
+
+.item-description {
+  font-weight: 300;
+}
+
+.item-name, .item-description {
+  font-size: 1rem;
+  font-family: Roboto;
+}
+
+.item-content {
+  padding: 1em;
+}
+
+.card-actions {
+  padding: 1em;
+  justify-content: end;
 }

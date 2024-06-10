@@ -1,9 +1,20 @@
-<mat-card class="item-card">
-  <mat-card-header>
-    <mat-card-subtitle>{{ item.name }}</mat-card-subtitle>
-    <mat-card-title>{{ item.description }}</mat-card-title>
-  </mat-card-header>
-  <mat-card-actions>
-    <a [routerLink]="['/items/', item.id]">View</a>
-  </mat-card-actions>
-</mat-card>
+<article>
+  <a class="item-link" [routerLink]="['/items/', item.id]">
+    <mat-card class="item-card">
+      <mat-card-header>
+        <mat-card-title
+          ><h3 class="item-name">{{ item.name }}</h3>
+        </mat-card-title>
+        <mat-card-subtitle class="item-description">{{
+          item.description
+        }}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content class="item-content">
+        <img [ngSrc]="item.imageUrl" width="200" height="200" />
+      </mat-card-content>
+      <mat-card-actions class="card-actions">
+        <button mat-button>View</button>
+      </mat-card-actions>
+    </mat-card>
+  </a>
+</article>
