@@ -1,7 +1,7 @@
 :host {
   display: block;
   min-height: 200px;
-  width: 232px;
+  width: 250px;
 }
 
 .item-link {
@@ -27,13 +27,20 @@
   font-weight: 300;
 }
 
-.item-name, .item-description {
+.item-name,
+.item-description {
   font-size: 1rem;
   font-family: Roboto;
 }
 
 .item-content {
+  align-self: center;
   padding: 1em;
+}
+
+.item-image {
+  height: auto;
+  width: 100%;
 }
 
 .card-actions {

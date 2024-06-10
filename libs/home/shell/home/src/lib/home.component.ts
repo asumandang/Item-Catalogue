@@ -28,7 +28,13 @@ export class HomeComponent {
     isSmallScreen: boolean;
   }>(({ set, connect }) => {
     // set initial state
-    set({ isSideMenuOpened: true });
+    set(() => {
+      const isSmallScreen = this.breakpointObserver.isMatched([
+        Breakpoints.Small,
+        Breakpoints.XSmall,
+      ]);
+      return { isSmallScreen, isSideMenuOpened: !isSmallScreen };
+    });
     // toggle side menu
     connect(
       'isSideMenuOpened',
