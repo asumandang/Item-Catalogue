@@ -1,6 +1,8 @@
 .top-nav {
   display: flex;
+  height: 86px;
   justify-content: space-between;
+  align-items: center;
   padding: 0.5em 1em;
   box-shadow: 0 4px 12px #0000000d;
   position: sticky;
@@ -8,6 +10,14 @@
   z-index: 10;
 }
 
+.site-title {
+  font-size: 1.5rem;
+  margin: 0;
+  padding: 0;
+}
+
 .top-nav-list {
   list-style: none;
+  padding: 0;
+  margin: 0;
 }

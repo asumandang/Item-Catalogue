@@ -20,6 +20,7 @@
     "@nx/angular": "19.2.2",
     "@rx-angular/state": "^18.0.0",
     "@rx-angular/template": "^18.0.0",
+    "bootstrap": "^5.3.3",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.3"

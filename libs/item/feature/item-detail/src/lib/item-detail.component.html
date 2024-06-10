@@ -1,13 +1,21 @@
-<div class="item-breadcrumbs"><a routerLink="/items">Items</a> > {{ slug$ | async }}</div>
-<ng-container *rxLet="item$; let item; error: error">
-  <article class="item-detail">
-    <img [ngSrc]="item.imageUrl" width="400" height="400" class="item-image" priority/>
-    <div>
+<div class="item-breadcrumbs">
+  <a routerLink="/items">Items</a> > {{ slug$ | async }}
+</div>
+<div *rxLet="item$; let item; error: error" class="container-md p-4">
+  <article class="item-detail row g-4">
+    <img
+      [ngSrc]="item.imageUrl"
+      width="400"
+      height="400"
+      class="item-image col-6"
+      priority
+    />
+    <div class="col-6">
       <h2>{{ item.name }}</h2>
       <p>{{ item.description }}</p>
     </div>
   </article>
-</ng-container>
+</div>
 
 <ng-template #error>
   <div>No Product Found</div>

@@ -1,6 +1,6 @@
 .sidenav-container {
   position: absolute;
-  top: 88px;
+  top: 86px;
   bottom: 0;
   left: 0;
   right: 0;
@@ -20,6 +20,10 @@
   list-style: none;
   padding: 0;
   margin: 0;
+}
+
+.side-nav-link {
+  text-decoration: none;
 }
 
 .page-content {

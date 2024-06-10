@@ -8,16 +8,12 @@
   "targets": {
     "build": {
       "executor": "@angular-devkit/build-angular:application",
-      "outputs": [
-        "{options.outputPath}"
-      ],
+      "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/apps/item-catalogue",
         "index": "apps/item-catalogue/src/index.html",
         "browser": "apps/item-catalogue/src/main.ts",
-        "polyfills": [
-          "zone.js"
-        ],
+        "polyfills": ["zone.js"],
         "tsConfig": "apps/item-catalogue/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
         "assets": [
@@ -27,6 +23,7 @@
           }
         ],
         "styles": [
+          "{workspaceRoot}/node_modules/bootstrap/dist/css/bootstrap.min.css",
           "@angular/material/prebuilt-themes/azure-blue.css",
           "apps/item-catalogue/src/styles.scss"
         ],
@@ -79,9 +76,7 @@
     },
     "test": {
       "executor": "@nx/jest:jest",
-      "outputs": [
-        "{workspaceRoot}/coverage/{projectRoot}"
-      ],
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
         "jestConfig": "apps/item-catalogue/jest.config.ts"
       }
