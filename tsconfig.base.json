@@ -34,6 +34,9 @@
       "@item-catalogue/item-ui": ["libs/item/ui/src/index.ts"],
       "@item-catalogue/item-ui-list-item": [
         "libs/item/ui/item-list-item/src/index.ts"
+      ],
+      "@item-catalogue/shared-interceptor": [
+        "libs/shared/interceptor/src/index.ts"
       ]
     }
   },
