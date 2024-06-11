@@ -1,1 +1,1 @@
-export * from './lib/http/http.component';
+export * from '../core/src';

@@ -37,7 +37,8 @@
       ],
       "@item-catalogue/shared-interceptor": [
         "libs/shared/interceptor/src/index.ts"
-      ]
+      ],
+      "@item-catalogue/shared-service": ["libs/shared/service/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

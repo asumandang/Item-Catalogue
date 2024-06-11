@@ -28,8 +28,6 @@ export const IMMUTABLE_WEB_CONFIG = new InjectionToken<Record<string, any>>(
     providedIn: 'root',
     factory() {
       const document = inject(DOCUMENT);
-      console.log('document');
-      console.log(document);
       const window = document.defaultView;
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const env: Record<string, any> =
@@ -38,7 +36,6 @@ export const IMMUTABLE_WEB_CONFIG = new InjectionToken<Record<string, any>>(
             ((window as any)['env'] as Record<string, any>)
           : parseConfig(document, '#iwa-c');
 
-          console.log(env);
       return env;
     },
   }

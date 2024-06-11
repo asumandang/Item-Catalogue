@@ -42,6 +42,14 @@
           "codeCoverage": true
         }
       }
+    },
+    "@nx/angular:ng-packagr-lite": {
+      "cache": true,
+      "dependsOn": ["^build"],
+      "inputs": ["production", "^production"]
+    },
+    "build": {
+      "dependsOn": ["^build"]
     }
   },
   "plugins": [
@@ -59,6 +67,11 @@
     },
     "@nx-dotnet/core"
   ],
+  "pluginsConfig": {
+    "@nx/js": {
+      "analyzeSourceFiles": false
+    }
+  },
   "generators": {
     "@nx/angular:application": {
       "e2eTestRunner": "playwright",
