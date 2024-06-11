@@ -22,6 +22,10 @@
   margin: 0;
 }
 
+.side-nav-list.-sub{
+  padding: 1em;
+}
+
 .side-nav-link {
   text-decoration: none;
 }

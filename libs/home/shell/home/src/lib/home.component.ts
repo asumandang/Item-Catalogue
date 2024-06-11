@@ -42,10 +42,14 @@ export class HomeComponent {
       ({ isSideMenuOpened }) => !isSideMenuOpened
     );
     connect(
-      'isSmallScreen',
       this.breakpointObserver.observe([Breakpoints.Small, Breakpoints.XSmall]),
-      (_isSmallScreen, state) => {
-        return state.matches;
+      (oldState, state) => {
+        return {
+          ...oldState,
+          // open side menu on larger screen resize; close if smaller
+          isSideMenuOpened: !state.matches,
+          isSmallScreen: state.matches,
+        };
       }
     );
   });

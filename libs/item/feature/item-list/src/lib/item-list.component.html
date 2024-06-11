@@ -1,6 +1,10 @@
-<div class="item-list container-md">
+<div *rxIf="hasItem$; else noProducts" class="item-list container-md">
   <item-catalogue-item-list-item
     [item]="item"
     *ngFor="let item of item$ | async"
   ></item-catalogue-item-list-item>
 </div>
+
+<ng-template #noProducts>
+  <div>No Products Found</div>
+</ng-template>

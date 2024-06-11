@@ -5,3 +5,5 @@ export interface Item {
   imageUrl: string;
   slug: string;
 }
+
+export type ItemCreateInput = Omit<Item, 'id'>;

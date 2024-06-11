@@ -1,0 +1,51 @@
+<section>
+  <h2 class="page-title">Create Item</h2>
+  <form
+    class="container d-flex flex-column gap-3"
+    [formGroup]="itemForm"
+    (ngSubmit)="createItem()"
+  >
+    <mat-form-field>
+      <mat-label>Name</mat-label>
+      <input matInput formControlName="name" />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Slug</mat-label>
+      <input matInput formControlName="slug" />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Category</mat-label>
+      <mat-select formControlName="category">
+        <mat-option *ngFor="let category of categories" [value]="category">{{
+          category
+        }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Description</mat-label>
+      <textarea matInput formControlName="description"></textarea>
+    </mat-form-field>
+    <div class="image-container">
+      <label for="image-upload" class="image-label"> Image</label>
+      <button mat-button type="button" (click)="imageInput.click()">
+        Upload
+      </button>
+      <figure class="banner_img">
+        <img
+          [ngSrc]="imageSource$ | push"
+          (click)="imageInput.click()"
+          width="100"
+          height="100"
+        />
+      </figure>
+      <input
+        #imageInput
+        type="file"
+        (change)="onSelectFile($event)"
+        style="display: none"
+        id="image-upload"
+      />
+    </div>
+    <button mat-flat-button type="submit" class="create-button">Create</button>
+  </form>
+</section>

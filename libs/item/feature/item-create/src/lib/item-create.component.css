@@ -1,0 +1,23 @@
+:host {
+  display: block;
+}
+
+.page-title {
+  font-size: 1.5rem;
+  margin-bottom: 1em;
+}
+
+.image-container {
+  padding: 1em;
+  border: 1px solid grey;
+  border-radius: 10px;
+  border-style: dashed;
+}
+
+.image-label {
+  display: none;
+}
+
+.create-button {
+  align-self: end;
+}

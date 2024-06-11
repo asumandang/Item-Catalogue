@@ -12,7 +12,14 @@
     [mode]="(isSmallScreen$ | async) ? 'over' : 'side'"
   >
     <ul class="side-nav-list">
-      <li><a class="side-nav-link" routerLink="/items">Products</a></li>
+      <li>
+        <a class="side-nav-link" routerLink="/items">Products</a>
+        <ul class="side-nav-list -sub">
+          <li>
+            <a class="side-nav-link" routerLink="/items/create">Create</a>
+          </li>
+        </ul>
+      </li>
     </ul>
   </mat-sidenav>
   <div class="page-content">
