@@ -1,22 +1,28 @@
 import { ItemService } from '@item-catalogue/item-data-access';
+import { ImageService } from '@item-catalogue/shared-service';
 import { NgFor, NgOptimizedImage } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  ReactiveFormsModule,
-  Validators,
-} from '@angular/forms';
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSelectModule } from '@angular/material/select';
 import { categories } from '@item-catalogue/enum';
 import { RxPush } from '@rx-angular/template/push';
-import { Observable, of, switchMap, tap } from 'rxjs';
+import {
+  EMPTY,
+  Observable,
+  catchError,
+  exhaustMap,
+  of,
+  switchMap,
+  tap,
+} from 'rxjs';
 import { rxState } from '@rx-angular/state';
+import { rxActions } from '@rx-angular/state/actions';
 import { MatButtonModule } from '@angular/material/button';
+import { ItemCreateInput } from '@item-catalogue/dto';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'lib-item-create',
@@ -47,6 +53,8 @@ export class ItemCreateComponent {
   imageFile: File | null = null;
   snackBar = inject(MatSnackBar);
   itemService = inject(ItemService);
+  imageService = inject(ImageService);
+  router = inject(Router);
 
   getImageSource(file: File): Observable<string> {
     const placeholder = 'assets/images/placeholder.png';
@@ -83,13 +91,58 @@ export class ItemCreateComponent {
     // set initial state
     set({ imageFile: null });
   });
-  imageFile$ = this.state.select('imageFile');
-  imageSource$: Observable<string> = this.imageFile$.pipe(
-    switchMap((imageFile) =>
-      imageFile
-        ? this.getImageSource(imageFile)
-        : of('assets/images/placeholder.png')
-    )
+  imageSource$: Observable<string> = this.state
+    .select('imageFile')
+    .pipe(
+      switchMap((imageFile) =>
+        imageFile
+          ? this.getImageSource(imageFile)
+          : of('assets/images/placeholder.png')
+      )
+    );
+  private actions = rxActions<{
+    createItem: {
+      item: Omit<ItemCreateInput, 'imageUrl'>;
+      imageFile: File;
+    };
+  }>();
+
+  private createItemEffect = this.actions.onCreateItem(
+    (createItem$) =>
+      createItem$.pipe(
+        exhaustMap(({ imageFile, item }) =>
+          this.imageService.uploadImage(imageFile).pipe(
+            tap(() => console.log('------- uploadImage')),
+            switchMap((result) => {
+              if (!result.success) {
+                throw new Error(
+                  result.error ?? 'Error occurred while uploading image'
+                );
+              }
+
+              return this.itemService
+                .createItem({
+                  ...item,
+                  imageUrl: result.data.link,
+                })
+                .pipe(tap(() => console.log('here')));
+            }),
+            catchError((err: unknown) => {
+              console.log('err');
+              console.log(err);
+              this.snackBar.open(
+                typeof err === 'string' ? err : 'Unable to create item'
+              );
+              return EMPTY;
+            }),
+            tap(() => console.log('here3'))
+          )
+        )
+      ),
+    () => {
+      this.snackBar.open('Successfully created item!');
+      this.router.navigateByUrl('/items');
+    }
   );
 
   onSelectFile(event: Event) {
@@ -100,13 +153,14 @@ export class ItemCreateComponent {
   }
 
   createItem() {
-    if (this.itemForm.invalid || this.imageFile === null) {
+    if (this.itemForm.invalid || !this.state.get('imageFile')) {
       this.snackBar.open('Please input required forms');
     }
 
-    this.itemService.createItem({
-      ...this.itemForm.getRawValue(),
-      imageUrl: '',
+    const imageFile = this.state.get('imageFile') as File;
+    this.actions.createItem({
+      item: this.itemForm.getRawValue(),
+      imageFile,
     });
   }
 }

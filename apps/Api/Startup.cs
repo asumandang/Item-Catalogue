@@ -19,6 +19,15 @@ namespace ItemCatalogue.Api
     public void ConfigureServices(IServiceCollection services)
     {
       services.AddControllers();
+      services.AddHttpClient();
+
+      // Read the Imgur client ID from environment variables
+      var imgurClientId = Environment.GetEnvironmentVariable("IMGUR_CLIENT_ID");
+      Console.WriteLine(imgurClientId);
+      if (string.IsNullOrEmpty(imgurClientId))
+      {
+        throw new InvalidOperationException("Imgur client ID is not set in the environment variables.");
+      }
 
       var allowedOrigins = Configuration.GetSection("AllowedOrigins").Get<string[]>();
 

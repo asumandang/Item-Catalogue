@@ -46,7 +46,7 @@ namespace ItemCatalogue.Api.Controllers
       var newItem = await _itemService.CreateItemAsync(item);
       if (newItem == null)
       {
-        return Conflict("Slug already exists. Please choose a different slug.");
+        return Conflict($"Slug '{item.Slug}' already exists. Please choose a different slug.");
       }
       return CreatedAtAction(nameof(GetItem), new { id = newItem.Id }, newItem);
     }

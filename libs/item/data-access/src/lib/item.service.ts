@@ -23,7 +23,7 @@ export class ItemService {
   createItem(item: ItemCreateInput) {
     return this.httpClient.post<Item>(
       `${this.apiV1Prefix}/items`,
-      { item },
+      { ...item },
       {
         context: adminAuthToken(),
       }

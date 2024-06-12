@@ -18,28 +18,18 @@ export const authInterceptor = (
     return next(req);
   }
 
-  console.log('authInterceptor', req.url);
   const config = inject(CONFIG);
   if (!config) {
     return next(req);
   }
   return config.pipe(
     take(1),
-    tap((x) => console.log('pipe', x)),
-    distinctUntilChanged((prev, cur) => prev.apiKey === cur.apiKey),
-    tap((x) => console.log('pipe2', x)),
-    startWith({ apiKey: '' }),
     switchMap((config) => {
-      console.log(config);
       req = req.clone({
         setHeaders: {
           'X-API-Key': config.apiKey,
         },
       });
-      return next(req);
-    }),
-    catchError(() => {
-      console.log('error');
       return next(req);
     })
   );
