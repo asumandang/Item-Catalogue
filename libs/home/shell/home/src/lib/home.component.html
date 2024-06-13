@@ -1,5 +1,5 @@
 <item-catalogue-top-nav
-  (menuClick)="toggleSideMenu.next()"
+  (toggleSideNav)="toggleSideMenu.next()"
 ></item-catalogue-top-nav>
 <mat-sidenav-container
   class="sidenav-container"
@@ -8,6 +8,7 @@
   <mat-sidenav
     #sidenav
     class="side-nav"
+    (openedChange)="toggleSideMenu.next($event)"
     [opened]="isSideMenuOpened$ | async"
     [mode]="(isSmallScreen$ | async) ? 'over' : 'side'"
   >

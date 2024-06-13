@@ -11,5 +11,5 @@ import { MatToolbarModule } from '@angular/material/toolbar';
   styleUrl: './top-nav.component.css',
 })
 export class TopNavComponent {
-  @Output() readonly menuClick = new EventEmitter<void>();
+  @Output() readonly toggleSideNav = new EventEmitter<void>();
 }

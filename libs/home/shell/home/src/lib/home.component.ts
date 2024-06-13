@@ -22,7 +22,7 @@ import { RouterLink, RouterOutlet } from '@angular/router';
 })
 export class HomeComponent {
   private breakpointObserver = inject(BreakpointObserver);
-  toggleSideMenu = new Subject<void>();
+  toggleSideMenu = new Subject<boolean | void>();
   private state = rxState<{
     isSideMenuOpened: boolean;
     isSmallScreen: boolean;
@@ -39,7 +39,9 @@ export class HomeComponent {
     connect(
       'isSideMenuOpened',
       this.toggleSideMenu,
-      ({ isSideMenuOpened }) => !isSideMenuOpened
+      ({ isSideMenuOpened }, isOpened) => {
+        return typeof isOpened !== 'undefined' ? isOpened : !isSideMenuOpened;
+      }
     );
     connect(
       this.breakpointObserver.observe([Breakpoints.Small, Breakpoints.XSmall]),
