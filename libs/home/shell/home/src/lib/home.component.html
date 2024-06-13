@@ -12,50 +12,51 @@
     [opened]="isSideMenuOpened$ | async"
     [mode]="(isSmallScreen$ | async) ? 'over' : 'side'"
   >
-    <ul class="side-nav-list">
-      <li>
-        <a class="side-nav-link" routerLink="/items">Products</a>
-        <ul class="side-nav-list -sub">
-          <li>
-            <a class="side-nav-link" routerLink="/items/create">Create</a>
-          </li>
-        </ul>
-      </li>
-    </ul>
-    <ul class="account-action-list nav flex-md-column flex-nowrap gap-2">
-      <li class="nav-item">
-        <button
-          type="button"
-          class="navigation-link text-hide ps-0 pe-1"
-          (click)="logOut()"
+    <nav class="nav-container">
+      <ul class="side-nav-list">
+        <li>
+          <a class="side-nav-link" routerLink="/items">Products</a>
+          <ul class="side-nav-list -sub">
+            <li>
+              <a class="side-nav-link" routerLink="/items/create">Create</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+      <ul class="account-action-list nav">
+        <li *rxIf="hasNoUser$" class="nav-item">
+          <button mat-button type="button" (click)="logIn()">
+            <mat-icon
+              aria-hidden="false"
+              aria-label="Login"
+              fontIcon="login"
+            ></mat-icon>
+            <span>Log In</span>
+          </button>
+        </li>
+        <li *rxIf="user$" class="nav-item">
+          <button mat-button type="button" (click)="logOut()">
+            <mat-icon
+              aria-hidden="false"
+              aria-label="Logout"
+              fontIcon="logout"
+            ></mat-icon>
+            <span>Logout</span>
+          </button>
+        </li>
+        <li
+          *rxIf="user$; let user"
+          class="nav-item account-container text-hide"
         >
-          <img
-            class="icon-module icon"
-            alt="Logout"
-            src="assets/images/logout-icon.svg"
-            data-bs-toggle="tooltip"
-            data-bs-placement="right"
-            title="Logout"
-            width="20"
-            height="20"
-          />
-          <span class="navigation-link-text text -logout me-3">Logout</span>
-        </button>
-      </li>
-      <li
-        class="nav-item account-container text-hide"
-        [class.-open]="isSideNavOpen"
-      >
-        <i
-          class="nav-icon icon-module icon bi bi-person-circle"
-          data-bs-toggle="tooltip"
-          data-bs-placement="right"
-          title="Account"
-        ></i>
-        <span class="settings-text text">Settings</span>
-        <span class="email-text text">{{ seller.email }}</span>
-      </li>
-    </ul>
+          <mat-icon
+            aria-hidden="false"
+            aria-label="Account"
+            fontIcon="person"
+          ></mat-icon>
+          <span class="email-text text">{{ user.email }}</span>
+        </li>
+      </ul>
+    </nav>
   </mat-sidenav>
   <div class="page-content">
     <router-outlet></router-outlet>

@@ -10,7 +10,7 @@ export class AuthService {
   private readonly apiV1Prefix = inject(API_V1_PREFIX);
 
   logIn(email: string, password: string) {
-    return this.httpClient.post<string>(
+    return this.httpClient.post<{ accessToken: string }>(
       `${this.apiV1Prefix}/login`,
       { email, password },
       {
@@ -20,12 +20,8 @@ export class AuthService {
   }
 
   logOut() {
-    return this.httpClient.post(
-      `${this.apiV1Prefix}/logout`,
-      null,
-      {
-        context: adminAuthToken(),
-      }
-    );
+    return this.httpClient.post(`${this.apiV1Prefix}/logout`, null, {
+      context: adminAuthToken(),
+    });
   }
 }

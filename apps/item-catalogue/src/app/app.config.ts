@@ -1,5 +1,6 @@
 import {
   ApplicationConfig,
+  importProvidersFrom,
   inject,
   provideZoneChangeDetection,
 } from '@angular/core';
@@ -19,9 +20,15 @@ import {
 import { Configuration } from '@item-catalogue/dto';
 import { authInterceptor } from '@item-catalogue/shared-interceptor';
 import { catchError, of } from 'rxjs';
+import { AuthStateModule } from '@item-catalogue/auth-state';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
 
 export const appConfig: ApplicationConfig = {
   providers: [
+    importProvidersFrom(StoreModule.forRoot()),
+    importProvidersFrom(EffectsModule.forRoot([])),
+    importProvidersFrom(AuthStateModule),
     {
       provide: CONFIG,
       useFactory: () => {

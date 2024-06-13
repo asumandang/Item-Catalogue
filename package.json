@@ -39,6 +39,8 @@
     "@angular/compiler-cli": "~18.0.0",
     "@angular/language-service": "~18.0.0",
     "@angular/material": "^18.0.2",
+    "@ngrx/effects": "^17.2.0",
+    "@ngrx/store": "^17.2.0",
     "@nx-dotnet/core": "^2.2.0",
     "@nx/devkit": "19.2.2",
     "@nx/eslint": "19.2.2",
