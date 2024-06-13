@@ -1,7 +1,6 @@
 :host {
   display: block;
   min-height: 200px;
-  width: 250px;
 }
 
 .item-link {
@@ -46,4 +45,8 @@
 .card-actions {
   padding: 1em;
   justify-content: end;
+}
+
+.view-button {
+  text-decoration: none;
 }

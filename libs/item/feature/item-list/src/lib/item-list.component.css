@@ -1,5 +1,8 @@
 .item-list {
-  display: flex;
-  flex-direction: row;
-  gap: 16px;
+  display: grid;
+  padding-left: 0;
+  margin-bottom: 0;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  list-style: none;
+  gap: 2em;
 }

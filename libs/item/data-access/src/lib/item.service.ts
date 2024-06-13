@@ -29,4 +29,10 @@ export class ItemService {
       }
     );
   }
+
+  deleteItem(id: string) {
+    return this.httpClient.delete<Item>(`${this.apiV1Prefix}/items/${id}`, {
+      context: adminAuthToken(),
+    });
+  }
 }

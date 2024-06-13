@@ -1,9 +1,11 @@
-<div *rxIf="hasItem$; else noProducts" class="item-list container-md">
-  <item-catalogue-item-list-item
-    [item]="item"
-    *ngFor="let item of item$ | async"
-  ></item-catalogue-item-list-item>
-</div>
+<ul *rxIf="hasItem$; else noProducts" class="item-list">
+  <li *ngFor="let item of item$ | async">
+    <item-catalogue-item-list-item
+      [item]="item"
+      (itemDelete)="deleteItem($event)"
+    ></item-catalogue-item-list-item>
+  </li>
+</ul>
 
 <ng-template #noProducts>
   <div>No Products Found</div>
