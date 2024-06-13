@@ -6,6 +6,7 @@ import { Subject } from 'rxjs';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { AsyncPipe } from '@angular/common';
 import { RouterLink, RouterOutlet } from '@angular/router';
+import { AuthService } from '@item-catalogue/shared-service';
 
 @Component({
   selector: 'item-catalogue-home',
@@ -21,8 +22,10 @@ import { RouterLink, RouterOutlet } from '@angular/router';
   styleUrl: './home.component.css',
 })
 export class HomeComponent {
-  private breakpointObserver = inject(BreakpointObserver);
   toggleSideMenu = new Subject<boolean | void>();
+
+  private breakpointObserver = inject(BreakpointObserver);
+  private authService = inject(AuthService);
   private state = rxState<{
     isSideMenuOpened: boolean;
     isSmallScreen: boolean;
@@ -57,4 +60,8 @@ export class HomeComponent {
   });
   isSideMenuOpened$ = this.state.select('isSideMenuOpened');
   isSmallScreen$ = this.state.select('isSmallScreen');
+
+  logOut() {
+    this.authService.logOut();
+  }
 }

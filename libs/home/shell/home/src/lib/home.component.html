@@ -22,6 +22,40 @@
         </ul>
       </li>
     </ul>
+    <ul class="account-action-list nav flex-md-column flex-nowrap gap-2">
+      <li class="nav-item">
+        <button
+          type="button"
+          class="navigation-link text-hide ps-0 pe-1"
+          (click)="logOut()"
+        >
+          <img
+            class="icon-module icon"
+            alt="Logout"
+            src="assets/images/logout-icon.svg"
+            data-bs-toggle="tooltip"
+            data-bs-placement="right"
+            title="Logout"
+            width="20"
+            height="20"
+          />
+          <span class="navigation-link-text text -logout me-3">Logout</span>
+        </button>
+      </li>
+      <li
+        class="nav-item account-container text-hide"
+        [class.-open]="isSideNavOpen"
+      >
+        <i
+          class="nav-icon icon-module icon bi bi-person-circle"
+          data-bs-toggle="tooltip"
+          data-bs-placement="right"
+          title="Account"
+        ></i>
+        <span class="settings-text text">Settings</span>
+        <span class="email-text text">{{ seller.email }}</span>
+      </li>
+    </ul>
   </mat-sidenav>
   <div class="page-content">
     <router-outlet></router-outlet>

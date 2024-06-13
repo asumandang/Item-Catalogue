@@ -15,6 +15,9 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@item-catalogue/auth-login": [
+        "libs/auth/feature/auth-login/src/index.ts"
+      ],
       "@item-catalogue/dto": ["libs/dto/src/index.ts"],
       "@item-catalogue/enum": ["libs/enum/src/index.ts"],
       "@item-catalogue/home": ["libs/home/shell/home/src/index.ts"],
