@@ -1,1 +1,1 @@
-export * from './lib/ui/ui.component';
+export * from '@item-catalogue/shared-ui-confirmation-modal';

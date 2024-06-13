@@ -3,9 +3,10 @@ import { ItemService } from '@item-catalogue/item-data-access';
 import { Component, inject } from '@angular/core';
 import { MatTableModule } from '@angular/material/table';
 import { AsyncPipe, NgFor } from '@angular/common';
-import { exhaustMap, map } from 'rxjs';
+import { exhaustMap, filter, map, switchMap } from 'rxjs';
 import { RxIf } from '@rx-angular/template/if';
 import { rxActions } from '@rx-angular/state/actions';
+import { ConfirmationModalService } from '@item-catalogue/shared-service';
 
 @Component({
   selector: 'item-catalogue-item-list',
@@ -16,12 +17,22 @@ import { rxActions } from '@rx-angular/state/actions';
 })
 export class ItemListComponent {
   itemService = inject(ItemService);
+  modalService = inject(ConfirmationModalService);
   item$ = this.itemService.getItems();
   hasItem$ = this.item$.pipe(map((items) => items.length > 0));
 
   private actions = rxActions<{ deleteItem: { itemId: string } }>();
   private deleteItemEffect = this.actions.onDeleteItem((deleteItem$) =>
     deleteItem$.pipe(
+      exhaustMap(() =>
+        this.modalService
+          .open({
+            title: 'Item Deletion',
+            message: 'Are you sure you want to delete this item?',
+            actionButton: 'Delete',
+          })
+          .pipe(filter((result) => result))
+      ),
       exhaustMap(({ itemId }) => this.itemService.deleteItem(itemId))
     )
   );

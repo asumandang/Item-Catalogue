@@ -43,7 +43,10 @@
         "libs/shared/interceptor/src/index.ts"
       ],
       "@item-catalogue/shared-service": ["libs/shared/service/src/index.ts"],
-      "@item-catalogue/shared-ui": ["libs/shared/ui/src/index.ts"]
+      "@item-catalogue/shared-ui": ["libs/shared/ui/src/index.ts"],
+      "@item-catalogue/shared-ui-confirmation-modal": [
+        "libs/shared/ui/confirmation-modal/src/index.ts"
+      ]
     }
   },
   "exclude": ["node_modules", "tmp"]

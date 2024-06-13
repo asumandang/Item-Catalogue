@@ -2,7 +2,7 @@
   "name": "item-create",
   "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/item/feature/item-create/src",
-  "prefix": "lib",
+  "prefix": "item-catalogue",
   "projectType": "library",
   "tags": ["bc:item", "type:feature"],
   "targets": {

@@ -2,7 +2,7 @@
   "name": "data-access",
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/item/data-access/src",
-  "prefix": "lib",
+  "prefix": "item-catalogue",
   "projectType": "library",
   "tags": [],
   "targets": {

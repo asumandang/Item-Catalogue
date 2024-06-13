@@ -25,7 +25,7 @@ import { ItemCreateInput } from '@item-catalogue/dto';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'lib-item-create',
+  selector: 'item-catalogue-item-create',
   standalone: true,
   imports: [
     NgFor,

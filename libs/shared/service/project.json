@@ -2,7 +2,7 @@
   "name": "shared-service",
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/shared/service/src",
-  "prefix": "lib",
+  "prefix": "item-catalogue",
   "projectType": "library",
   "tags": ["bc:shared"],
   "targets": {
