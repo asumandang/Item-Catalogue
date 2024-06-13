@@ -2,6 +2,13 @@
 
 This is an application that displays list of items. Depending if authenticated, you can create or delete items.
 
+Features
+- Simple login and API key authentication/authorization
+- View items for guest users
+- Create, update, and delete items for admin users
+- Open swagger for api endpoint documentation
+- View NX graph for project visualization
+
 ### Tech Used
 This application uses the following technologies/tools
 - Frontend: Angular, Bootstrap, Material
