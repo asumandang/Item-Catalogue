@@ -23,6 +23,7 @@ namespace ItemCatalogue.Api
             {
               services.AddSingleton<IConnectionMultiplexer>(ConnectionMultiplexer.Connect("localhost"));
               services.AddSingleton<IItemService, RedisItemService>();
+              services.AddSingleton<IUserService, RedisUserService>();
               services.AddHttpClient();
             });
   }
