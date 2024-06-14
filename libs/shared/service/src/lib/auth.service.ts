@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
+import type { AuthOutput } from '@item-catalogue/dto';
 import { API_V1_PREFIX, adminAuthToken } from '@item-catalogue/http-core';
 
 @Injectable({
@@ -10,8 +11,8 @@ export class AuthService {
   private readonly apiV1Prefix = inject(API_V1_PREFIX);
 
   logIn(email: string, password: string) {
-    return this.httpClient.post<{ accessToken: string }>(
-      `${this.apiV1Prefix}/login`,
+    return this.httpClient.post<AuthOutput>(
+      `${this.apiV1Prefix}/auth/login`,
       { email, password },
       {
         context: adminAuthToken(),
@@ -20,7 +21,7 @@ export class AuthService {
   }
 
   logOut() {
-    return this.httpClient.post(`${this.apiV1Prefix}/logout`, null, {
+    return this.httpClient.post(`${this.apiV1Prefix}/auth/logout`, null, {
       context: adminAuthToken(),
     });
   }

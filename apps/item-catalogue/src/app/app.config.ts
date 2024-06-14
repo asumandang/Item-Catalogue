@@ -23,6 +23,7 @@ import { catchError, of } from 'rxjs';
 import { AuthStateModule } from '@item-catalogue/auth-state';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
+import { MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/material/snack-bar';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -50,5 +51,6 @@ export const appConfig: ApplicationConfig = {
         return config.apiV1Prefix;
       },
     },
+    { provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: { duration: 2500 } }, // update default duration dismissal of snackbar
   ],
 };

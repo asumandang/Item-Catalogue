@@ -1,6 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { exhaustMap, map } from 'rxjs';
+import { catchError, exhaustMap, map, of } from 'rxjs';
 
 import { AuthService } from '@item-catalogue/shared-service';
 import {
@@ -10,11 +10,13 @@ import {
   userHasAuthenticated,
   userLogOut,
 } from './action';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Injectable()
 export class AuthEffect {
   authService = inject(AuthService);
   action$ = inject(Actions);
+  snackbar = inject(MatSnackBar);
   readonly tryToLogIn$ = createEffect(() =>
     this.action$.pipe(
       ofType(tryToLogIn),
@@ -27,7 +29,16 @@ export class AuthEffect {
                   accessToken: result.accessToken,
                 })
               : userDoesNotExist()
-          )
+          ),
+          catchError((err) => {
+            this.snackbar.open(
+              err.error ??
+                'Error occurred while trying to log in. Please contact admin to resolve issue',
+              'Dismiss',
+              { duration: 4000 }
+            );
+            return of(userDoesNotExist());
+          })
         )
       )
     )

@@ -1,0 +1,11 @@
+<form [formGroup]="userForm" class="container d-flex flex-column gap-3" (ngSubmit)="logIn()">
+  <mat-form-field>
+    <mat-label>Name</mat-label>
+    <input matInput formControlName="email" type="text" />
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Password</mat-label>
+    <input matInput formControlName="password" type="password" />
+  </mat-form-field>
+  <button mat-flat-button>Submit</button>
+</form>
