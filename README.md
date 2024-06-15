@@ -132,3 +132,4 @@ This features are still missing in the application but highly preferred to be ad
 - Search Item
 - Installing font directly (instead of adding it in the index.html)
 - NX boundary settings
+- Add linting, unit test, and husky
