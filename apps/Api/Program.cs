@@ -1,8 +1,5 @@
-using ItemCatalogue.Api.Services;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using StackExchange.Redis;
 
 namespace ItemCatalogue.Api
 {
@@ -18,13 +15,6 @@ namespace ItemCatalogue.Api
             .ConfigureWebHostDefaults(webBuilder =>
             {
               webBuilder.UseStartup<Startup>();
-            })
-            .ConfigureServices((context, services) =>
-            {
-              services.AddSingleton<IConnectionMultiplexer>(ConnectionMultiplexer.Connect("localhost"));
-              services.AddSingleton<IItemService, RedisItemService>();
-              services.AddSingleton<IUserService, RedisUserService>();
-              services.AddHttpClient();
             });
   }
 }

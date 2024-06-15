@@ -7,7 +7,7 @@ namespace ItemCatalogue.Api.Services
   {
     Task<IEnumerable<User>> GetUsersAsync();
     Task<User> GetUserAsync(string idOrEmail);
-    Task<User> CreateUserAsync(User newUser);
+    Task<User> CreateUserAsync(UserCredentials newUser);
     Task<bool> UpdateUserAsync(string id, User updatedUser);
     Task<bool> DeleteUserAsync(string id);
   }

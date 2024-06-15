@@ -1,4 +1,5 @@
 using ItemCatalogue.Api.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
@@ -25,19 +26,8 @@ namespace ItemCatalogue.Api.Controllers
       _configuration = configuration;
     }
 
-    [HttpPost]
-    public async Task<ActionResult<Item>> CreateUser([FromBody] User user)
-    {
-      var newUser = await _userService.CreateUserAsync(user);
-      if (newUser == null)
-      {
-        return Conflict("Email already exists. Please choose a different email.");
-      }
-      return CreatedAtAction(nameof(CreateUser), new { id = newUser.Id }, newUser);
-    }
-
     [HttpPost("login")]
-    public async Task<ActionResult<List<User>>> GetIAuth([FromBody] User user)
+    public async Task<ActionResult<string>> Login([FromBody] UserCredentials user)
     {
       var retrievedUser = await _userService.GetUserAsync(user.Email);
       if (retrievedUser == null || retrievedUser.Password != user.Password)
@@ -50,23 +40,24 @@ namespace ItemCatalogue.Api.Controllers
     }
 
     // Generating token based on user information
-    private JwtSecurityToken GenerateAccessToken(string userName)
+    private string GenerateAccessToken(string email)
     {
       // Create user claims
       var claims = new List<Claim>
         {
-            new Claim(ClaimTypes.Name, userName),
+            new Claim(ClaimTypes.Name, email),
         };
 
       // Create a JWT
-      var token = new JwtSecurityToken(
-          issuer: _configuration["JwtSettings:Issuer"],
-          audience: _configuration["JwtSettings:Audience"],
-          claims: claims,
-          expires: DateTime.UtcNow.AddMinutes(10), // Token expiration time
-          signingCredentials: new SigningCredentials(new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JwtSettings:SecretKey"])),
-              SecurityAlgorithms.HmacSha256)
+      var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JwtSettings:Key"]));
+      var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
+      var Sectoken = new JwtSecurityToken(_configuration["Jwt:Issuer"],
+              _configuration["Jwt:Issuer"],
+              null,
+              expires: DateTime.Now.AddMinutes(120),
+              signingCredentials: credentials
       );
+      var token = new JwtSecurityTokenHandler().WriteToken(Sectoken);
 
       return token;
     }

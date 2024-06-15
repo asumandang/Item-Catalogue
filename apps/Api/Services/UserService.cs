@@ -15,10 +15,10 @@ namespace ItemCatalogue.Api.Services
       _redis = muxer.GetDatabase();
     }
 
-    public async Task<User> CreateUserAsync(User newUser)
+    public async Task<User> CreateUserAsync(UserCredentials user)
     {
       var id = Guid.NewGuid().ToString();
-      newUser.Id = id;
+      var newUser = user.GetUser(id);
 
       var userJson = JsonSerializer.Serialize(newUser);
       var existingUser = await GetUserAsync(newUser.Email);
