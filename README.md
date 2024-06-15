@@ -109,7 +109,7 @@ Targets can be defined in the `package.json` or `projects.json`. Learn more [in 
 Access the Swagger UI for detailed API documentation (make sure your [api server is running](#running-the-application)):
 
 ```bash
-http://localhost:5000/swagger
+http://localhost:5000
 ```
 
 ## Project Visualization
