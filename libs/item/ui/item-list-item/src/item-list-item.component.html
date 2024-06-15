@@ -18,7 +18,7 @@
       />
     </mat-card-content>
     <mat-card-actions class="card-actions">
-      <button mat-button (click)="deleteItem()">Delete</button>
+      <button *rxIf="user$" mat-button (click)="deleteItem()">Delete</button>
       <a mat-button [routerLink]="['/items/', item.id]" class="view-button">View</a>
     </mat-card-actions>
   </mat-card>

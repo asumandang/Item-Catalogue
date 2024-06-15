@@ -39,7 +39,6 @@ export class AuthEffect {
             return userDoesNotExist();
           }),
           catchError((err) => {
-            console.log(err);
             this.snackbar.open(
               err.error ??
                 'Error occurred while trying to log in. Please contact admin to resolve issue',
