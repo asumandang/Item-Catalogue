@@ -1,10 +1,7 @@
 using ItemCatalogue.Api.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using StackExchange.Redis;
-using System;
 using System.Collections.Generic;
-using System.Net.Http;
-using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace ItemCatalogue.Api.Controllers
@@ -41,6 +38,7 @@ namespace ItemCatalogue.Api.Controllers
     }
 
     [HttpPost]
+    [Authorize(AuthenticationSchemes = "ApiKeyScheme")]
     public async Task<ActionResult<Item>> CreateItem([FromBody] Item item)
     {
       var newItem = await _itemService.CreateItemAsync(item);

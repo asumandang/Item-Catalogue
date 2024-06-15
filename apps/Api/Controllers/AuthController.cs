@@ -52,8 +52,8 @@ namespace ItemCatalogue.Api.Controllers
       var expiresIn = DateTime.Now.AddMinutes(120);
       var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JwtSettings:Key"]));
       var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
-      var Sectoken = new JwtSecurityToken(_configuration["Jwt:Issuer"],
-              _configuration["Jwt:Issuer"],
+      var Sectoken = new JwtSecurityToken(_configuration["JwtSettings:Issuer"],
+              _configuration["JwtSettings:Issuer"],
               null,
               expires: expiresIn,
               signingCredentials: credentials

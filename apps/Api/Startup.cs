@@ -35,15 +35,39 @@ namespace ItemCatalogue.Api
       services.AddSingleton<IItemService, RedisItemService>();
       services.AddSingleton<IUserService, RedisUserService>();
 
-      services.AddAuthentication()
-      .AddJwtBearer(options => // Add JWT Authentication
+      // Configure JWT Bearer options
+      services.Configure<JwtBearerOptions>(options =>
       {
+        Console.WriteLine("services.Configure<JwtBearerOptions>");
+        Console.WriteLine(Configuration["JwtSettings:Issuer"]);
+        Console.WriteLine(Configuration["JwtSettings:Issuer"]);
+        // Configure TokenValidationParameters
         options.TokenValidationParameters = new TokenValidationParameters
         {
           ValidateIssuer = true,
           ValidateIssuerSigningKey = true,
           ValidIssuer = Configuration["JwtSettings:Issuer"],
-          IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Jwt:Key"]))
+          IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["JwtSettings:Key"]))
+        };
+      });
+
+      // Print the JwtSettings values
+      foreach (var childSection in Configuration.GetSection("JwtSettings").GetChildren())
+      {
+        Console.WriteLine($"{childSection.Key}: {childSection.Value}");
+      }
+
+      services.AddAuthentication()
+      .AddJwtBearer(options => // Add JWT Authentication
+      {
+        Console.WriteLine("TokenValidationParameters");
+        Console.WriteLine(Configuration["JwtSettings:Issuer"]);
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+          ValidateIssuer = true,
+          ValidateIssuerSigningKey = true,
+          ValidIssuer = Configuration["JwtSettings:Issuer"],
+          IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["JwtSettings:Key"]))
         };
       }).AddScheme<ApiKeyAuthenticationOptions, ApiKeyAuthenticationHandler>("ApiKeyScheme", null);
 
