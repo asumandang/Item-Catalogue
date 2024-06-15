@@ -15,10 +15,12 @@
     <nav class="nav-container">
       <ul class="side-nav-list">
         <li>
-          <a class="side-nav-link" routerLink="/items">Products</a>
-          <ul class="side-nav-list -sub">
+          <a class="side-nav-link" routerLink="/items" mat-button>Products</a>
+          <ul *rxIf="user$" class="side-nav-list -sub">
             <li>
-              <a class="side-nav-link" routerLink="/items/create">Create</a>
+              <a class="side-nav-link" routerLink="/items/create" mat-button
+                >Create</a
+              >
             </li>
           </ul>
         </li>
@@ -34,16 +36,6 @@
             <span>Log In</span>
           </button>
         </li>
-        <li *rxIf="user$" class="nav-item">
-          <button mat-button type="button" (click)="logOut()">
-            <mat-icon
-              aria-hidden="false"
-              aria-label="Logout"
-              fontIcon="logout"
-            ></mat-icon>
-            <span>Logout</span>
-          </button>
-        </li>
         <li
           *rxIf="user$; let user"
           class="nav-item account-container text-hide"
@@ -54,6 +46,16 @@
             fontIcon="person"
           ></mat-icon>
           <span class="email-text text">{{ user.email }}</span>
+        </li>
+        <li *rxIf="user$" class="nav-item">
+          <button mat-button type="button" (click)="logOut()">
+            <mat-icon
+              aria-hidden="false"
+              aria-label="Logout"
+              fontIcon="logout"
+            ></mat-icon>
+            <span>Logout</span>
+          </button>
         </li>
       </ul>
     </nav>

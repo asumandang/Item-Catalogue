@@ -18,8 +18,8 @@
 
 .side-nav-list {
   list-style: none;
-  padding-left: 1em;
   margin: 0;
+  padding-left: 0;
 }
 
 .side-nav-list.-sub {
@@ -39,10 +39,9 @@
 }
 
 .nav-container > .account-action-list {
-  position:absolute;
+  position: absolute;
   bottom: 0.5em;
 }
-
 
 .page-content {
   padding: 2em;
@@ -51,4 +50,15 @@
 .side-nav .mat-drawer-inner-container {
   display: flex;
   align-content: space-between;
+}
+
+.account-action-list {
+  gap: 0.5em;
+  flex-direction: column;
+}
+
+.account-container {
+  display: flex;
+  margin-left: 0.5em;
+  gap: 0.3em;
 }

@@ -76,7 +76,7 @@ export class HomeComponent {
     );
   });
   user$ = this.store.select(userFeature.selectUser);
-  hasNoUser$ = this.user$.pipe(stateful(map((user) => user === null)));
+  hasNoUser$ = this.user$.pipe(map((user) => user === null));
   isSideMenuOpened$ = this.state.select('isSideMenuOpened');
   isSmallScreen$ = this.state.select('isSmallScreen');
 

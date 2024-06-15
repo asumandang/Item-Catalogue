@@ -1,5 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
-import { userDoesNotExist, userHasAuthenticated } from './action';
+import { userDoesNotExist, userHasAuthenticated, userLogOut } from './action';
 import { AuthState } from './model';
 
 const initialState: AuthState = {
@@ -23,5 +23,6 @@ export const authReducer = createReducer(
       ...state,
       ...initialState,
     })
-  )
+  ),
+  on(userLogOut, (): AuthState => initialState)
 );

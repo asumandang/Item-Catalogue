@@ -27,7 +27,7 @@ namespace ItemCatalogue.Api.Controllers
     }
 
     [HttpPost("login")]
-    public async Task<ActionResult<string>> Login([FromBody] UserCredentials user)
+    public async Task<ActionResult<AuthResult>> Login([FromBody] UserCredentials user)
     {
       var retrievedUser = await _userService.GetUserAsync(user.Email);
       if (retrievedUser == null || retrievedUser.Password != user.Password)
@@ -40,7 +40,7 @@ namespace ItemCatalogue.Api.Controllers
     }
 
     // Generating token based on user information
-    private string GenerateAccessToken(string email)
+    private AuthResult GenerateAccessToken(string email)
     {
       // Create user claims
       var claims = new List<Claim>
@@ -49,17 +49,19 @@ namespace ItemCatalogue.Api.Controllers
         };
 
       // Create a JWT
+      var expiresIn = DateTime.Now.AddMinutes(120);
       var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JwtSettings:Key"]));
       var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
       var Sectoken = new JwtSecurityToken(_configuration["Jwt:Issuer"],
               _configuration["Jwt:Issuer"],
               null,
-              expires: DateTime.Now.AddMinutes(120),
+              expires: expiresIn,
               signingCredentials: credentials
       );
       var token = new JwtSecurityTokenHandler().WriteToken(Sectoken);
 
-      return token;
+      var result = new AuthResult(token, new DateTimeOffset(expiresIn).ToUnixTimeMilliseconds());
+      return result;
     }
   }
 }
