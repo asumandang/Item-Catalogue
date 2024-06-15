@@ -38,7 +38,7 @@ namespace ItemCatalogue.Api.Controllers
     }
 
     [HttpPost]
-    [Authorize(AuthenticationSchemes = "ApiKeyScheme")]
+    // [Authorize(AuthenticationSchemes = "ApiKeyScheme")] // TODO: add again if JWT auth is working
     public async Task<ActionResult<Item>> CreateItem([FromBody] Item item)
     {
       var newItem = await _itemService.CreateItemAsync(item);
