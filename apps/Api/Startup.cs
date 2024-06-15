@@ -111,7 +111,6 @@ namespace ItemCatalogue.Api
 
       // Read the Imgur client ID from environment variables
       var imgurClientId = Environment.GetEnvironmentVariable("IMGUR_CLIENT_ID");
-      Console.WriteLine(imgurClientId);
       if (string.IsNullOrEmpty(imgurClientId))
       {
         throw new InvalidOperationException("Imgur client ID is not set in the environment variables.");

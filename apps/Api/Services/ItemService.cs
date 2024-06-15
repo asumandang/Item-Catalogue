@@ -36,13 +36,15 @@ namespace ItemCatalogue.Api.Services
 
     public async Task<bool> DeleteItemAsync(string id)
     {
-      var itemJson = await _redis.StringGetAsync($"item:{id}");
-      if (itemJson.IsNullOrEmpty)
+      var existingItem = await GetItemAsync(id);
+      if (existingItem == null)
       {
+        // Not existing
         return false;
       }
 
       await _redis.KeyDeleteAsync($"item:{id}");
+      await _redis.KeyDeleteAsync($"item:slug:{existingItem.Slug}");
       await _redis.SetRemoveAsync("items", $"item:{id}");
       return true;
     }
