@@ -122,3 +122,13 @@ npx nx graph
 ```
 
 - [Learn more about Exploring the Project Graph](https://nx.dev/core-features/explore-graph)
+
+## For Future Addition
+This features are still missing in the application but highly preferred to be added
+- JWT authentication
+- Add loading indications
+- Retaining of user info when reloading website
+- Images: CDN, Load priority
+- Search Item
+- Installing font directly (instead of adding it in the index.html)
+- NX boundary settings

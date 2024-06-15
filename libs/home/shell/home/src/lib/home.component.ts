@@ -10,15 +10,13 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { TopNavComponent } from '@item-catalogue/home-ui';
 import { Component, inject } from '@angular/core';
 import { rxState } from '@rx-angular/state';
-import { Subject, map, switchMap, filter, tap, exhaustMap } from 'rxjs';
+import { Subject, map, filter, tap, exhaustMap } from 'rxjs';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { AsyncPipe } from '@angular/common';
 import { RouterLink, RouterOutlet } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
 import { Store } from '@ngrx/store';
 import { MatButtonModule } from '@angular/material/button';
-import { stateful } from '@rx-angular/state/selections';
-import { User } from '@item-catalogue/dto';
 
 @Component({
   selector: 'item-catalogue-home',
